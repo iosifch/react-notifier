@@ -12,14 +12,14 @@ class Event
 
     protected $subscriber;
 
-    protected $notified;
+    protected $published;
 
-    public function __construct($name, $subjectId, $subscriber, $notified)
+    public function __construct($name, $subjectId, $subscriber, $published)
     {
         $this->name = $name;
         $this->subjectId = $subjectId;
         $this->subscriber = $subscriber;
-        $this->notified = $notified;
+        $this->published = $published;
     }
 
     public function setId($id)
@@ -49,8 +49,8 @@ class Event
         return $this->subscriber;
     }
 
-    public function notified()
+    public function published()
     {
-        return $this->notified;
+        return $this->published;
     }
 }

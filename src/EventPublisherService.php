@@ -24,11 +24,11 @@ class EventPublisherService
             }
 
             $userConnection = $this->userConnections
-                ->offsetGet($event->subscriber());
-            $userConnection->send(json_encode([
-                'event_name' => $event->name(),
-                'subject_id' => $event->subjectId()
-            ]));
+                ->offsetGet($event->subscriber())
+                ->send(json_encode([
+                    'event_name' => $event->name(),
+                    'subject_id' => $event->subjectId()
+                ]));
 
             $this->eventRepository->markAsPublished($event);
         }

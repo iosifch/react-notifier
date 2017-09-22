@@ -9,19 +9,19 @@ class EventRepository
             'name'          => 'product_updated',
             'subject_id'    => 1880,
             'subscriber'    => 1,
-            'notified'      => 0
+            'published'      => 0
         ],
         [
             'name'          => 'product_updated',
             'subject_id'    => 1881,
             'subscriber'    => 1,
-            'notified'      => 0
+            'published'      => 0
         ],
         [
             'name'          => 'product_updated',
             'subject_id'    => 1881,
             'subscriber'    => 2,
-            'notified'      => 0
+            'published'      => 0
         ],
     ];
 
@@ -32,7 +32,7 @@ class EventRepository
     {
         $totalEvents = 0;
         foreach ($this->events as $event) {
-            if (0 === $event['notified']) {
+            if (0 === $event['published']) {
                 $totalEvents++;
             }
         }
@@ -55,14 +55,14 @@ class EventRepository
     {
         $events = [];
         foreach ($this->events as $key => $event) {
-            if (0 === $event['notified']) {
+            if (0 === $event['published']) {
                 array_push(
                     $events,
                     (new Event(
                         $event['name'],
                         $event['subject_id'],
                         $event['subscriber'],
-                        $event['notified']
+                        $event['published']
                     ))->setId($key)
                 );
             }
@@ -81,7 +81,7 @@ class EventRepository
             return;
         }
 
-        $this->events[$event->id()]['notified'] = 1;
+        $this->events[$event->id()]['published'] = 1;
     }
 
     public function add(Event $event)
@@ -90,7 +90,7 @@ class EventRepository
             'name'          => $event->name(),
             'subject_id'    => $event->subjectId(),
             'subscriber'    => $event->subscriber(),
-            'notified'      => $event->notified()
+            'published'      => $event->published()
         ]);
     }
 }
