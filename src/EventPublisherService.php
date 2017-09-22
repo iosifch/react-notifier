@@ -23,7 +23,7 @@ class EventPublisherService
                 continue;
             }
 
-            $userConnection = $this->userConnections
+            $this->userConnections
                 ->offsetGet($event->subscriber())
                 ->send(json_encode([
                     'event_name' => $event->name(),
